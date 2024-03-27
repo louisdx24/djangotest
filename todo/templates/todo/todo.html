@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
 {% block title %}代辦事項{% endblock %}
 {% block style %}
+<style>
+    .todo-list {
+        background-color: rgb(255, 227, 203);
+        margin: 12px auto;
+        width: 500px;
+        height: 200px;
+    }
+
+    .date {
+        background-color: orangered;
+        color: rgb(251, 210, 191);
+    }
+
+    .text {
+        background-color: white;
+        height: 100px;
+        border-radius: 6px;
+        padding: 6px;
+        margin: 12px;
+    }
+
+    .title {
+        color: navy;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .important {
+        color: brown;
+    }
+</style>
 
 {% endblock %}
 
@@ -8,5 +40,17 @@
 
 {% block content %}
 <h1>To Do List</h1>
+{% for todo in todos %}
+<div class="todo-list">
+    <p class="date">{{todo.created}}</p>
+    {{todo.date_completed}}
+    <p class="title"><u>{{todo.title}}</u>
+        {% if todo.important %}
+        <span class="important">(重要)</span>
+        {% endif %}
+    </p>
+    <p class="text">{{todo.text}}</p>
+</div>
+{% endfor %}
 
 {% endblock %}
