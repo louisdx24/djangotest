@@ -43,8 +43,8 @@
 {% for todo in todos %}
 <div class="todo-list">
     <p class="date">{{todo.created}}</p>
-    {{todo.date_completed}}
-    <p class="title"><u>{{todo.title}}</u>
+    <p class="title">
+        <a href="{% url 'view_todo' todo.id %}">{{todo.title}}</a>
         {% if todo.important %}
         <span class="important">(重要)</span>
         {% endif %}
