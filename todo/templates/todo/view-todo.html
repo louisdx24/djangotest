@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}代辦事項{% endblock %}
 {% block style %}
+<style>
+    .button style {
+        width: 40px;
+    }
+</style>
 {% endblock %}
 {% block content %}
 <h1>To Do</h1>
@@ -11,7 +16,7 @@
 <form action="" method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="更新" name="update">
-    <input type="submit" value="刪除" name="delete">
+    <input class="button-style" type="submit" value="更新" name="update">
+    <input class="button-style" type="submit" value="刪除" name="delete">
 </form>
 {% endblock %}

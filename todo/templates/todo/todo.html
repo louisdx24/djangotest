@@ -4,9 +4,10 @@
 <style>
     .todo-list {
         background-color: rgb(255, 227, 203);
-        margin: 12px auto;
-        width: 500px;
+        margin: 36px auto;
+        width: 450px;
         height: 200px;
+        border-radius: 12px;
     }
 
     .date {
@@ -16,7 +17,7 @@
 
     .text {
         background-color: white;
-        height: 100px;
+        height: 80px;
         border-radius: 6px;
         padding: 6px;
         margin: 12px;
@@ -36,21 +37,29 @@
 
 {% endblock %}
 
-
-
 {% block content %}
-<h1>To Do List</h1>
+<h1>
+    {% if completed %}
+    Completed-Todo
+    {%else %}
+    To Do List
+    {% endif %}
+</h1>
 {% for todo in todos %}
 <div class="todo-list">
     <p class="date">{{todo.created}}</p>
     <p class="title">
-        <a href="{% url 'view_todo' todo.id %}">{{todo.title}}</a>
+        <a href="{% url 'view-todo' todo.id %}">{{todo.title}}</a>
         {% if todo.important %}
         <span class="important">(重要)</span>
+        <a href="{% url 'delete-todo' todo.id %}" class="button-style" style="margin-bottom: 6px; font-size: 12px;"
+            onclick="return confirmDelete()">刪除</a>
         {% endif %}
+
     </p>
     <p class="text">{{todo.text}}</p>
 </div>
+
 {% endfor %}
 
 {% endblock %}
