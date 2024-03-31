@@ -52,14 +52,19 @@
         <a href="{% url 'view-todo' todo.id %}">{{todo.title}}</a>
         {% if todo.important %}
         <span class="important">(重要)</span>
-        <a href="{% url 'delete-todo' todo.id %}" class="button-style" style="margin-bottom: 6px; font-size: 12px;"
-            onclick="return confirmDelete()">刪除</a>
         {% endif %}
-
     </p>
     <p class="text">{{todo.text}}</p>
+    <a href="{% url 'delete-todo' todo.id %}" class="button-style" style="margin-bottom: 6px; font-size: 12px;"
+        onclick="return confirmDelete()">刪除</a>
+    {% if completed %}
+    <a href="{% url 'uncompleted-todo' todo.id %}" class="button-style" style="margin-bottom: 6px; font-size: 12px;"
+        onclick="return confirmUnCompleted()">恢復</a>
+    {%else %}
+    <a href="{% url 'completed-todo' todo.id %}" class="button-style" style="margin-bottom: 6px; font-size: 12px;"
+        onclick="return confirmCompleted()">完成</a>
+    {% endif %}
 </div>
-
 {% endfor %}
 
 {% endblock %}

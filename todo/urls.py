@@ -25,4 +25,10 @@ urlpatterns = [
     path("create-todo/", views.create_todo, name="create-todo"),
     path("completed-todo/", views.completed_todo, name="completed-todo"),
     path("delete-todo/<int:id>", views.delete_todo, name="delete-todo"),
+    path("completed-todo/<int:id>", views.completed_todo_byid, name="completed-todo"),
+    path(
+        "uncompleted-todo/<int:id>",
+        views.uncompleted_todo_byid,
+        name="uncompleted-todo",
+    ),
 ]
